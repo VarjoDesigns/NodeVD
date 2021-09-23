@@ -53,6 +53,15 @@ app.post('/customer/add',  (req, res, next) => {
     })
 })
 
+// Delete
+app.delete('/customer/delete/:id', (req, res, next) => {
+    let id = req.params.id;
+    db.run("DELETE FROM customer where id=?", [id], (error, result) => {
+        if (error) throw error;
+        return res.status(200).json( { count: this.changes });
+    })
+})
+
 
 
 // FORM
@@ -83,6 +92,15 @@ app.post('/form/add',  (req, res, next) => {
         if (error) throw error;
 
         return res.status(200).json( {count: this.changes} );
+    })
+})
+
+// Delete
+app.delete('/form/delete/:id', (req, res, next) => {
+    let id = req.params.id;
+    db.run("DELETE FROM form where id=?", [id], (error, result) => {
+        if (error) throw error;
+        return res.status(200).json( { count: this.changes });
     })
 })
 
